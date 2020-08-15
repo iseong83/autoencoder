@@ -3,6 +3,7 @@ import argparse
 import matplotlib.pyplot as plt
 from autoencoder.model import NN, callbacks
 from autoencoder.generator import data_generator
+from utils import load_data
 from config import *
 
 def train():
