@@ -2,6 +2,7 @@ import os
 from os.path import join
 import glob
 import numpy as np
+from shutil import copyfile
 from config import *
 from utils import *
 
@@ -29,6 +30,6 @@ for dirname, data in zip(dirs, split_datasets):
         base, fname = os.path.split(filename)
         img = fname.replace('heatmap', 'img')
 
-        os.rename(filename, join(path, fname))
-        os.rename(join(base,img), join(path, img))
+        copyfile(filename, join(path, fname))
+        copyfile(join(base,img), join(path, img))
 
