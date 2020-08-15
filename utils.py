@@ -20,6 +20,6 @@ def load_data():
     test_file_numbers = [k.split('_')[-1].split('.')[0]  for k in glob.glob(os.path.join(DATA_PATH, '/test/img_*.jpg'))]
     print('Number of training set {}, validation set {}, test set {}'.format(len(train_file_numbers), len(valid_file_numbers), len(test_file_numbers)))
     
-    return train_file_number, valid_file_numbers, test_file_numbers
+    return train_file_numbers, valid_file_numbers, test_file_numbers
 
 
