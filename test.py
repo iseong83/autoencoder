@@ -18,7 +18,7 @@ _, _, test = load_data()
 
 test_gen = data_generator('test', test, batch_size=batch_size, input_shape=(96,96), target_shape=(192,192))
 
-fig, ax = plt.subplots(batch_size, 3, figsize=(16,16*3))
+fig, ax = plt.subplots(batch_size, 3, figsize=(16,16))
 ax = ax.reshape(-1)
 
 for k in range(len(test)//batch_size):

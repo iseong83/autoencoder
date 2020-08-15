@@ -27,5 +27,8 @@ python train.py
 Note that the `test` label indicates `validation set`, not `test set`.
 ![loss](imgs/losses_16_adam_0.01_0.9.png)
 
+## Example of inference on the test set
+![ex](imgs/results.png)
+
 
 
