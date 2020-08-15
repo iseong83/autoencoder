@@ -86,28 +86,28 @@ class NN:
         deconv1 = conv2dtransposeBNleaky(conv6, 512, 3, strides=2, padding='same')
         
         # 12x12
-        skip1 = layers.concatenate([deconv1, conv5], name='skip1')
+        skip1 = tf.keras.layers.concatenate([deconv1, conv5], name='skip1')
         conv7 = conv2dBNleaky(skip1, 256, 3, strides=1, padding='same')
         deconv2 = conv2dtransposeBNleaky(conv7, 128, 3, strides=2, padding='same')
         
         # 24x24
-        skip2 = layers.concatenate([deconv2, conv3], name='skip2')
+        skip2 = tf.keras.layers.concatenate([deconv2, conv3], name='skip2')
         conv8 = conv2dBNleaky(skip2, 128, 3, strides=1, padding='same')
         deconv3 = conv2dtransposeBNleaky(conv8, 64, 3, strides=2, padding='same')
         
         # 48x48
-        skip3 = layers.concatenate([deconv3, conv2], name='skip3')
+        skip3 = tf.keras.layers.concatenate([deconv3, conv2], name='skip3')
         conv9 = conv2dBNleaky(skip3, 64, 3, strides=1, padding='same')
         deconv4 = conv2dtransposeBNleaky(conv9, 64, 3, strides=2, padding='same')
         
         # 96x96
-        skip3 = layers.concatenate([deconv4, conv1])
+        skip3 = tf.keras.layers.concatenate([deconv4, conv1])
         conv10 = conv2dBNleaky(skip3, 64, 3, strides=1, padding='same')
         deconv5 = conv2dtransposeBNleaky(conv10, 64, 3, strides=2, padding='same')
     
         # 192x192
-        conv_final = layers.Conv2D(3, 3, strides=1, padding='same', activation='sigmoid',
-                           kernel_initializer=orthogonal(), name='final_conv')(deconv5)
+        conv_final = tf.keras.layers.Conv2D(3, 3, strides=1, padding='same', activation='sigmoid',
+                                            name='final_conv')(deconv5)
     
         
         # Enable Cosine Learning Rate
@@ -138,11 +138,16 @@ def callbacks(output_name='model_out.h5', log_name='keras_log.csv', reduce_lr=Fa
       EarlyStopping: Early stopping to prevent overfitting
       ReduceLROnPlateau: Reduce the learning rate if validation loss doesn't improve
     '''
+    if not os.path.exists(MODEL_PATH):
+        os.makedirs(MODEL_PATH)
+    if not os.path.exists(LOG_PATH):
+        os.makedirs(LOG_PATH)
+
     cb = []
     cb.append(tf.keras.callbacks.ModelCheckpoint(os.path.join(MODEL_PATH,output_name), 
                                            monitor='val_loss', verbose=0, 
                                            save_best_only=True, mode='auto'))
-    cb.append(keras.callbacks.CSVLogger(os.path.join(LOG_PATH, log_out),
+    cb.append(tf.keras.callbacks.CSVLogger(os.path.join(LOG_PATH, log_name),
                                         append=True))
     #cb.append(tf.keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=0.1, patience=10))
     if reduce_lr:

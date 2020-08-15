@@ -34,7 +34,7 @@ def train():
     n_test_steps = int(np.ceil(n_test/batch_size))
 
     # Initialize the network
-    net = NN(input_shape=(96,96), gpu_id=gpu_id)
+    net = NN(input_shape=(96,96,3), gpu_id=gpu_id)
     # build architecture with the given optimizer and learning rate
     model = net.build_model(opt, lr, mom, n_train_steps)
     # print model summary
@@ -48,8 +48,8 @@ def train():
 
     # use generator to generate training and validation data
     # Images are scaled in the generator
-    train_gen = data_generator(train, batch_size=batch_size, input_shape = (96,96), target_shape = (192,192), seed=32)
-    valid_gen = data_generator(valid, batch_size=batch_size, input_shape = (96,96), target_shape = (192,192), seed=102)
+    train_gen = data_generator('train', train, batch_size=batch_size, input_shape = (96,96), target_shape = (192,192), seed=32)
+    valid_gen = data_generator('valid', valid, batch_size=batch_size, input_shape = (96,96), target_shape = (192,192), seed=102)
 
     # training with generator
     # print out losses

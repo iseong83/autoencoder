@@ -1,5 +1,7 @@
+import os
 import numpy as np
 from config import DATA_PATH
+import tensorflow.keras as keras
 
 def data_generator(path, files, batch_size, input_shape, target_shape, shuffle=True, seed = 10): 
     '''
@@ -17,9 +19,9 @@ def data_generator(path, files, batch_size, input_shape, target_shape, shuffle=T
         x = np.zeros((n_data, *input_shape, 3))
         y = np.zeros((n_data, *target_shape, 3))
         for i in range(n_data):
-          image = keras.preprocessing.image.load_img(os.path.join(DATA_PATH,'heatmap_'+str(files[i])+'.jpg'))
+          image = keras.preprocessing.image.load_img(os.path.join(DATA_PATH, path, 'heatmap_'+str(files[i])+'.jpg'))
           input_arr = keras.preprocessing.image.img_to_array(image)
-          image = keras.preprocessing.image.load_img(os.path.join(DATA_PATH,'img_'+str(files[i])+'.jpg'))
+          image = keras.preprocessing.image.load_img(os.path.join(DATA_PATH, path, 'img_'+str(files[i])+'.jpg'))
           target_arr = keras.preprocessing.image.img_to_array(image)
           x[i, :, :, :] = input_arr
           y[i, :, :, :] = target_arr
