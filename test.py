@@ -30,13 +30,12 @@ _, _, test = load_data()
 # create a generator
 test_gen = data_generator('test', test, batch_size=batch_size, input_shape=(96,96), target_shape=(192,192))
 
-
+fig, ax = plt.subplots(batch_size, 3, figsize=(16,16))
+ax = ax.reshape(-1)
 for k in range(len(test)//batch_size):
     x, y = next(test_gen)
     results = model.predict(x)
 
-    fig, ax = plt.subplots(batch_size, 3, figsize=(16,16))
-    ax = ax.reshape(-1)
     for i in range(len(y)):
         ax[i*3].imshow(x[i])
         ax[i*3].set_title('Input')
@@ -45,7 +44,5 @@ for k in range(len(test)//batch_size):
         ax[i*3+2].imshow(results[i])
         ax[i*3+2].set_title('Generated Image')
     fig.savefig(f'{SAVE_RESULT}results_{k}.png')
-
-    input('press any button to check next images')
-    del fig
+    #input('press any button to check next images')
 

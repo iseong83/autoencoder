@@ -32,7 +32,7 @@ python test.py
 This will generate images using the test set defined above. As a default, it will process every 4 images (batch size) and store the images at the `imgs` directory.
 
 ## Model
-The model weights can be downloaded from [Google Drive](https://drive.google.com/file/d/1-6b9_reSTJgU8HZOW6FqvmaBAYe5yMrO/view?usp=sharing). Store the model weight at the `saved_model` directory.
+The model weights can be downloaded from [Google Drive](https://drive.google.com/file/d/1xuNkqoLDDGjcY7VsxlPWnQA8PIqqc6Qh/view?usp=sharing). Store the model weight at the `saved_model` directory.
 
 ### Training results
 Note that the `test` label indicates `validation set`, not `test set`.
