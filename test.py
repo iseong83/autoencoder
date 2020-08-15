@@ -10,7 +10,7 @@ MODEL_PATH = './saved_model/model_out.h5'
 batch_size = 4
 
 if not os.path.exists(SAVE_RESULT):
-    os.path.makedirs(SAVE_RESULT)
+    os.makedirs(SAVE_RESULT)
 
 model = keras.models.load_model(MODEL_PATH)
 
