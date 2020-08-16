@@ -32,10 +32,13 @@ python test.py
 This will generate images using the test set defined above. As a default, it will process every 4 images (batch size) and store the images at the `imgs` directory.
 
 ## Model
-The model weights can be downloaded from [Google Drive](https://drive.google.com/file/d/1xuNkqoLDDGjcY7VsxlPWnQA8PIqqc6Qh/view?usp=sharing). Store the model weight at the `saved_model` directory.
-
+The model weights can be downloaded from [Google Drive](https://drive.google.com/file/d/1xuNkqoLDDGjcY7VsxlPWnQA8PIqqc6Qh/view?usp=sharing). Store the model weight at the `saved_model` directory.   
+## Metric
+The structural similarity index measure (SSIM) index is used to measure the similarity between the target and generated images.    
+## Results
+The average of SSIM indices at the test set is `0.8366`.
 ### Training results
-Note that the `test` label indicates `validation set`, not `test set`.
+Note that the label `test` indicates the `validation` set, not the `test` set.
 ![loss](imgs/losses_16_adam_0.01_0.9.png)
 
 ### Example of inference on the test set
